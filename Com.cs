@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Customcommand
@@ -33,11 +34,16 @@ namespace Customcommand
         }
         bool Gettarget(out GameObject targeta)
         {
-            Targeting.GetTarget(Player.mainObject, 100f, out GameObject target, out float dist);
-            if(target != null)
+            Physics.Raycast(new Ray((MainCamera.camera.transform.position + MainCamera.camera.transform.forward * 0.15f), MainCamera.camera.transform.forward), out RaycastHit hit, 100f);
+            GameObject target = null;
+            if(hit.collider != null)
             {
-                targeta = UWE.Utils.GetEntityRoot(target);
-                return true;
+                target = hit.collider.gameObject;
+                if(target.GetComponentInParent<PrefabIdentifier>() != null)
+                {
+                    targeta = target.GetComponentInParent<PrefabIdentifier>().gameObject;
+                    return targeta;
+                }
             }
             targeta = null;
             return false;

@@ -1,5 +1,5 @@
 {
-  "Id":"Customcommand.mod",
+  "Id":"Customcommand",
   "DisplayName":"Customcommand",
   "Author":"Cotric",
   "Version":"1.1.0",
@@ -7,5 +7,6 @@
   "Enable":true,
   "AssemblyName":"Customcommand.dll",
   "EntryMethod":"Customcommand.Patcher.Patch",
+  "Game": "Both",
   "Config":{}
 }
